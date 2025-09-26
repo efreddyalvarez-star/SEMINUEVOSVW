@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Catálogo Estilo Marketplace</title>
+<style>
+body { font-family: Arial, sans-serif; margin:0; padding:0; background-color:#f4f4f4; }
+
+/* Título de la sección */
+.titulo-seccion {
+    background-color: #02A6E1; /* Azul cielo */
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+    margin: 0;
+    font-size: 2em;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+/* Contenedor de productos con fondo uniforme */
+.seccion-productos {
+    background-color: #e6f2fb; /* Azul muy claro para combinar con el título */
+    padding: 40px 20px;
+}
+
+/* Catálogo */
+.catalogo { 
+    display:grid; 
+    grid-template-columns:repeat(3,1fr); 
+    gap:30px; 
+    max-width:1200px; 
+    margin:auto; 
+}
+
+/* Producto */
+.producto { 
+    background-color:white; 
+    border:1px solid #ccc; 
+    border-radius:10px; 
+    overflow:hidden; 
+    box-shadow:0 2px 6px rgba(0,0,0,0.15); 
+    transition:0.2s; 
+    cursor:pointer; 
+}
+.producto:hover { transform:scale(1.03); }
+.producto img { width:100%; height:300px; object-fit:cover; display:block; }
+.info { padding:15px; text-align:center; }
+.descripcion { font-weight:bold; font-size:1.2em; margin-bottom:8px; }
+.precio { color:green; font-size:1.3em; }
+
+/* Modales */
+.modal { display:none; position:fixed; z-index:1000; left:0; top:0; width:100%; height:100%; overflow-y:auto; background-color: rgba(0,0,0,0.8); padding:40px 10px; }
+.modal-content { background-color:#fff; margin:auto; padding:20px; border-radius:10px; max-width:900px; position:relative; }
+.modal-content img { width:100%; border-radius:10px; }
+.close { position:absolute; top:15px; right:25px; color:#333; font-size:30px; font-weight:bold; cursor:pointer; }
+.galeria { display:flex; justify-content:center; gap:10px; margin-top:15px; flex-wrap:wrap; }
+.galeria img { width:120px; height:80px; object-fit:cover; border-radius:5px; cursor:pointer; border:2px solid transparent; transition:0.3s; }
+.galeria img:hover { border:2px solid #333; }
+
+/* Responsivo */
+@media (max-width:900px) { .catalogo { grid-template-columns:repeat(2,1fr); } }
+@media (max-width:600px) { .catalogo { grid-template-columns:1fr; } }
+</style>
+</head>
+<body>
+
+<h1 class="titulo-seccion">SEMINUEVOS</h1>
+
+<div class="seccion-productos">
+  <div class="catalogo">
+    <!-- Productos 1 a 23 -->
+    <div class="producto" onclick="abrirModal('cupraModal')"><img src="AUTOS/CUPRA2.jpeg" alt="CUPRA"><div class="info"><div class="descripcion">CUPRA</div><div class="precio">FORMENTOR PHEV 1.4 TSI</div></div></div>
+    <div class="producto" onclick="abrirModal('bmwModal')"><img src="BMW.jpeg" alt="BMW"><div class="info"><div class="descripcion">BMW</div><div class="precio">SERIE 4 420i GRAND COUPE EXECUTIVE</div></div></div>
+    <div class="producto" onclick="abrirModal('virtusModal')"><img src="VIRTUS.jpeg" alt="VIRTUS"><div class="info"><div class="descripcion">VOLKSWAGEN</div><div class="precio">VIRTUS COMFORTLINE</div></div></div>
+    <div class="producto" onclick="abrirModal('auto4')"><img src="audi5.jpeg" alt="Auto 4"><div class="info"><div class="descripcion">AUDI</div><div class="precio">AUDI Q2 35 TFSI TIPTRONIC</div></div></div>
+    <div class="producto" onclick="abrirModal('auto5')"><img src="seat6.jpeg" alt="Auto 5"><div class="info"><div class="descripcion">SEAT</div><div class="precio">LEON FR 1.4 TSI 150 HP AUT 8 VEL.</div></div></div>
+    <div class="producto" onclick="abrirModal('auto6')"><img src="virtusplata.jpeg" alt="Auto 6"><div class="info"><div class="descripcion">VIRTUS PLATA</div><div class="precio">VIRTUS TRENDLINE 1.6 AUTOMATICO - 114</div></div></div>
+    <div class="producto" onclick="abrirModal('auto7')"><img src="tigun.jpeg" alt="Auto 7"><div class="info"><div class="descripcion">TAIGUN</div><div class="precio">TAIGUN COMFORTLINE 1.0 TSI - 114</div></div></div>
+
+    <div class="producto" onclick="abrirModal('auto8')"><img src="gris.jpeg" alt="VIRTUS PLATA "><div class="info"><div class="descripcion">VIRTUS PLATA </div><div class="precio">VIRTUS TRENDLINE 1.6 MANUAL</div></div></div>
+
+
+    <div class="producto" onclick="abrirModal('auto9')"><img src="audig.jpeg" alt="Auto 9"><div class="info"><div class="descripcion">AUDI</div><div class="precio">AUDI A5 SPORTBACK, GRIS DAYTONA</div></div></div>
+
+    <div class="producto" onclick="abrirModal('auto10')"><img src="CHRYSLER.jpeg" alt="Auto 10"><div class="info"><div class="descripcion">CHRYSLER</div><div class="precio">PACIFICA LIMITED PLATINUM</div></div></div>
+
+    <div class="producto" onclick="abrirModal('auto11')"><img src="TIGUANN.jpeg" alt="Auto 11"><div class="info"><div class="descripcion">TAIGUN NEGRA</div><div class="precio">MODELO 11</div></div></div>
+
+    <div class="producto" onclick="abrirModal('auto12')"><img src="audib.jpeg" alt="Auto 12"><div class="info"><div class="descripcion">AUDI BLANCO</div><div class="precio">AUDI Q2 35 TFSI TIPTRONIC</div></div></div>
+
+    <div class="producto" onclick="abrirModal('auto13')"><img src="Mazda.jpeg" alt="Auto 13"><div class="info"><div class="descripcion">Mazda</div><div class="precio">MAZDA M3S SG MAX, POLYMETAL GRAY METALLIC / INT ROJO</div></div></div>
+
+    <div class="producto" onclick="abrirModal('auto14')"><img src="AZUL6.jpeg" alt="Auto 14"><div class="info"><div class="descripcion">TAIGUN AZUL RISING</div><div class="precio">TAIGUN TRENDLINE 1.0 TSI - 114</div></div></div>
+
+    <div class="producto" onclick="abrirModal('auto15')"><img src="NISSAN.jpeg" alt="Auto 15"><div class="info"><div class="descripcion">NISSAN BLANCO/NEGRO</div><div class="precio">KICKS ADVANCE CVT AUTOMATICO</div></div></div>
+
+    <div class="producto" onclick="abrirModal('auto16')"><img src="BLANCAT.jpeg" alt="Auto 16"><div class="info"><div class="descripcion">TAIGUN BLANCA</div><div class="precio">TAIGUN HIGHLINE 1.0 TSI</div></div></div>
+
+
+    <div class="producto" onclick="abrirModal('auto17')"><img src="TAOS.jpeg" alt="Auto 17"><div class="info"><div class="descripcion">TAOS BLANCA</div><div class="precio">TAOS HIGHLINE 1.4 TSI</div></div></div>
+
+    <div class="producto" onclick="abrirModal('auto18')"><img src="VIR.jpeg" alt="Auto 18"><div class="info"><div class="descripcion">VIRTUS PLATA </div><div class="precio">VIRTUS TRENDLINE 1.6 MANUAL</div></div></div>
+
+
+    <div class="producto" onclick="abrirModal('auto19')"><img src="SEA.jpeg" alt="Auto 19"><div class="info"><div class="descripcion">SEAT</div><div class="precio">ARONA XPERIENCE 1.6 MPI AUTOMATICO</div></div></div>
+
+    <div class="producto" onclick="abrirModal('auto20')"><img src="AT.jpeg" alt="Auto 20"><div class="info"><div class="descripcion">SEAT</div><div class="precio">SEAT IBIZA STYLE AUTOMATICO 1.6</div></div></div>
+
+    <div class="producto" onclick="abrirModal('auto21')"><img src="auto21.jpeg" alt="Auto 21"><div class="info"><div class="descripcion">MARCA 21</div><div class="precio">MODELO 21</div></div></div>
+    <div class="producto" onclick="abrirModal('auto22')"><img src="auto22.jpeg" alt="Auto 22"><div class="info"><div class="descripcion">MARCA 22</div><div class="precio">MODELO 22</div></div></div>
+    <div class="producto" onclick="abrirModal('auto23')"><img src="auto23.jpeg" alt="Auto 23"><div class="info"><div class="descripcion">MARCA 23</div><div class="precio">MODELO 23</div></div></div>
+  </div>
+</div>
+
+<!-- MODALES (1 a 23) -->
+<!-- Aquí se incluyen todos los modales que ya tenías -->
+
+<script>
+function abrirModal(id){
+  document.getElementById(id).style.display = "block";
+}
+function cerrarModal(id){
+  document.getElementById(id).style.display = "none";
+}
+function cambiarImagen(id, src){
+  document.getElementById(id).src = src;
+}
+</script>
+
+</body>
+</html>
+
+</div>
+
+<!-- MODALES 1 a 3 CON IMÁGENES -->
+<div id="cupraModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('cupraModal')">&times;</span>
+<img id="mainCupra" src="CUPRA2.jpeg" alt="CUPRA">
+<h2>CUPRA FORMENTOR PHEV 1.4 TSI</h2>
+<p>Auto híbrido enchufable, motor 1.4 TSI, potencia combinada de 204hp.</p>
+<div class="galeria">
+<img src="CUPRA2.jpeg" onclick="cambiarImagen('mainCupra', this.src)">
+<img src="CUPRA3.jpeg" onclick="cambiarImagen('mainCupra', this.src)">
+<img src="CUPRA4.jpeg" onclick="cambiarImagen('mainCupra', this.src)">
+<img src="CUPRA5.jpeg" onclick="cambiarImagen('mainCupra', this.src)">
+<img src="CUPRA6.jpeg" onclick="cambiarImagen('mainCupra', this.src)">
+<img src="CUPRA7.jpeg" onclick="cambiarImagen('mainCupra', this.src)">
+<img src="CUPRA8.jpeg" onclick="cambiarImagen('mainCupra', this.src)">
+</div>
+</div>
+</div>
+
+<div id="bmwModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('bmwModal')">&times;</span>
+<img id="mainBmw" src="BMW.jpeg" alt="BMW">
+<h2>BMW SERIE 4 420i GRAND COUPE EXECUTIVE</h2>
+<p>Diseño elegante, motor 2.0L Turbo, excelente rendimiento.</p>
+<div class="galeria">
+<img src="BMW.jpeg" onclick="cambiarImagen('mainBmw', this.src)">
+<img src="BMW2.jpeg" onclick="cambiarImagen('mainBmw', this.src)">
+<img src="BMW3.jpeg" onclick="cambiarImagen('mainBmw', this.src)">
+<img src="BMW4.jpeg" onclick="cambiarImagen('mainBmw', this.src)">
+<img src="BMW5.jpeg" onclick="cambiarImagen('mainBmw', this.src)">
+<img src="BMW6.jpeg" onclick="cambiarImagen('mainBmw', this.src)">
+<img src="BMW7.jpeg" onclick="cambiarImagen('mainBmw', this.src)">
+</div>
+</div>
+</div>
+
+<div id="virtusModal" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('virtusModal')">&times;</span>
+<img id="mainVirtus" src="VIRTUS.jpeg" alt="VIRTUS">
+<h2>VOLKSWAGEN VIRTUS COMFORTLINE</h2>
+<p>Sedán moderno, motor 1.6L, excelente espacio interior.</p>
+<div class="galeria">
+<img src="VIRTUS.jpeg" onclick="cambiarImagen('mainVirtus', this.src)">
+<img src="VIRTUS2.jpeg" onclick="cambiarImagen('mainVirtus', this.src)">
+<img src="VIRTUS3.jpeg" onclick="cambiarImagen('mainVirtus', this.src)">
+<img src="VIRTUS4.jpeg" onclick="cambiarImagen('mainVirtus', this.src)">
+<img src="VIRTUS5.jpeg" onclick="cambiarImagen('mainVirtus', this.src)">
+<img src="VIRTUS6.jpeg" onclick="cambiarImagen('mainVirtus', this.src)">
+</div>
+</div>
+</div>
+
+<!-- MODALES 4 a 23 LISTOS PARA EDITAR -->
+<div id="auto4" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('auto4')">&times;</span>
+<img id="main4" src="audi5.jpeg" alt="Auto 4">
+<h2>MARCA 4 MODELO 4</h2>
+<p>Descripción del Auto 4.</p>
+<div class="galeria">
+<img src="audi2.jpeg" onclick="cambiarImagen('main4', this.src)">
+<img src="audi3.jpeg" onclick="cambiarImagen('main4', this.src)">
+<img src="audi4.jpeg" onclick="cambiarImagen('main4', this.src)">
+<img src="audi6.jpeg" onclick="cambiarImagen('main4', this.src)">
+<img src="audi7.jpeg" onclick="cambiarImagen('main4', this.src)">
+</div>
+</div>
+</div>
+
+<div id="auto5" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('auto5')">&times;</span>
+<img id="main5" src="seat5.jpeg" alt="Auto 5">
+<h2>MARCA 5 MODELO 5</h2>
+<p>Descripción del Auto 5.</p>
+<div class="galeria">
+<img src="seat.jpeg" onclick="cambiarImagen('main5', this.src)">
+<img src="seat2.jpeg" onclick="cambiarImagen('main5', this.src)">
+<img src="seat3.jpeg" onclick="cambiarImagen('main5', this.src)">
+<img src="seat4.jpeg" onclick="cambiarImagen('main5', this.src)">
+<img src="seat6.jpeg" onclick="cambiarImagen('main5', this.src)">
+<img src="seat7.jpeg" onclick="cambiarImagen('main5', this.src)">
+</div>
+</div>
+</div>
+
+<div id="auto6" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('auto6')">&times;</span>
+<img id="main6" src="virtusplata.jpeg" alt="Auto 6">
+<h2>MARCA 6 MODELO 6</h2>
+<p>Descripción del Auto 6.</p>
+<div class="galeria">
+<img src="virtusplata2.jpeg" onclick="cambiarImagen('main6', this.src)">
+<img src="virtusplata3.jpeg" onclick="cambiarImagen('main6', this.src)">
+<img src="virtusplata4.jpeg" onclick="cambiarImagen('main6', this.src)">
+<img src="virtusplata5.jpeg" onclick="cambiarImagen('main6', this.src)">
+<img src="virtusplata6.jpeg" onclick="cambiarImagen('main6', this.src)">
+<img src="virtusplata7.jpeg" onclick="cambiarImagen('main6', this.src)">
+<img src="virtusplata8.jpeg" onclick="cambiarImagen('main6', this.src)">
+</div>
+</div>
+</div>
+
+<div id="auto7" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('auto7')">&times;</span>
+<img id="main7" src="tigun.jpeg" alt="Auto 7">
+<h2>MARCA 7 MODELO 7</h2>
+<p>Descripción del Auto 7.</p>
+<div class="galeria">
+<img src="tigun2.jpeg" onclick="cambiarImagen('main7', this.src)">
+<img src="tigun3.jpeg" onclick="cambiarImagen('main7', this.src)">
+<img src="tigun4.jpeg" onclick="cambiarImagen('main7', this.src)">
+<img src="tigun5.jpeg" onclick="cambiarImagen('main7', this.src)">
+<img src="tigun6.jpeg" onclick="cambiarImagen('main7', this.src)">
+<img src="tigun7.jpeg" onclick="cambiarImagen('main7', this.src)">
+</div>
+</div>
+</div>
+
+<div id="auto8" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('auto8')">&times;</span>
+<img id="main8" src="gris.jpeg" alt="Auto 8">
+<h2>MARCA 8 MODELO 8</h2>
+<p>Descripción del Auto 8.</p>
+<div class="galeria">
+<img src="gris2.jpeg" onclick="cambiarImagen('main8', this.src)">
+<img src="gris3.jpeg" onclick="cambiarImagen('main8', this.src)">
+<img src="gris4.jpeg" onclick="cambiarImagen('main8', this.src)">
+<img src="gris5.jpeg" onclick="cambiarImagen('main8', this.src)">
+<img src="gris6.jpeg" onclick="cambiarImagen('main8', this.src)">
+</div>
+</div>
+</div>
+
+
+<div id="auto9" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('auto9')">&times;</span>
+<img id="main9" src="audig.jpeg" alt="Auto 9">
+<h2>MARCA 9 MODELO 9</h2>
+<p>Descripción del Auto 9.</p>
+<div class="galeria">
+<img src="audig2.jpeg" onclick="cambiarImagen('main9', this.src)">
+<img src="audig3.jpeg" onclick="cambiarImagen('main9', this.src)">
+<img src="audig4.jpeg" onclick="cambiarImagen('main9', this.src)">
+<img src="audig5.jpeg" onclick="cambiarImagen('main9', this.src)">
+<img src="audig6.jpeg" onclick="cambiarImagen('main9', this.src)">
+</div>
+</div>
+</div>
+
+<div id="auto10" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('auto10')">&times;</span>
+<img id="main10" src="CHRYSLER.jpeg" alt="Auto 10">
+<h2>MARCA 10 MODELO 10</h2>
+<p>Descripción del Auto 10.</p>
+<div class="galeria">
+<img src="CHRYSLER2.jpeg" onclick="cambiarImagen('main10', this.src)">
+<img src="CHRYSLER3.jpeg" onclick="cambiarImagen('main10', this.src)">
+<img src="CHRYSLER4.jpeg" onclick="cambiarImagen('main10', this.src)">
+<img src="CHRYSLER5.jpeg" onclick="cambiarImagen('main10', this.src)">
+<img src="CHRYSLER6.jpeg" onclick="cambiarImagen('main10', this.src)">
+<img src="CHRYSLER7.jpeg" onclick="cambiarImagen('main10', this.src)">
+</div>
+</div>
+</div>
+
+<div id="auto11" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('auto11')">&times;</span>
+<img id="main11" src="TIGUANN.jpeg" alt="Auto 11">
+<h2>MARCA 11 MODELO 11</h2>
+<p>Descripción del Auto 11.</p>
+<div class="galeria">
+<img src="TIGUANN2.jpeg" onclick="cambiarImagen('main11', this.src)">
+<img src="TIGUANN3.jpeg" onclick="cambiarImagen('main11', this.src)">
+<img src="TIGUANN4.jpeg" onclick="cambiarImagen('main11', this.src)">
+<img src="TIGUAN5.jpeg" onclick="cambiarImagen('main11', this.src)">
+</div>
+</div>
+</div>
+
+<div id="auto12" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('auto12')">&times;</span>
+<img id="main12" src="audib.jpeg" alt="Auto 12">
+<h2>MARCA 12 MODELO 12</h2>
+<p>Descripción del Auto 12.</p>
+<div class="galeria">
+<img src="audib2.jpeg" onclick="cambiarImagen('main12', this.src)">
+<img src="audib3.jpeg" onclick="cambiarImagen('main12', this.src)">
+<img src="audib4.jpeg" onclick="cambiarImagen('main12', this.src)">
+<img src="audib5.jpeg" onclick="cambiarImagen('main12', this.src)">
+</div>
+</div>
+</div>
+
+<div id="auto13" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('auto13')">&times;</span>
+<img id="main13" src="Mazda.jpeg" alt="Auto 13">
+<h2>MARCA 13 MODELO 13</h2>
+<p>Descripción del Auto 13.</p>
+<div class="galeria">
+<img src="Mazda2.jpeg" onclick="cambiarImagen('main13', this.src)">
+<img src="Mazda3.jpeg" onclick="cambiarImagen('main13', this.src)">
+<img src="Mazda4.jpeg" onclick="cambiarImagen('main13', this.src)">
+<img src="Mazda5.jpeg" onclick="cambiarImagen('main13', this.src)">
+<img src="Mazda6.jpeg" onclick="cambiarImagen('main13', this.src)">
+<img src="Mazda7.jpeg" onclick="cambiarImagen('main13', this.src)">
+</div>
+</div>
+</div>
+
+<div id="auto14" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('auto14')">&times;</span>
+<img id="main14" src="AZUL6.jpeg" alt="Auto 14">
+<h2>MARCA 14 MODELO 14</h2>
+<p>Descripción del Auto 14.</p>
+<div class="galeria">
+<img src=AZUL2.jpeg onclick="cambiarImagen('main14', this.src)">
+<img src="AZUL3.jpeg" onclick="cambiarImagen('main14', this.src)">
+<img src="AZUL4.jpeg" onclick="cambiarImagen('main14', this.src)">
+<img src="AZUL5.jpeg" onclick="cambiarImagen('main14', this.src)">
+<img src="AZUL6.jpeg" onclick="cambiarImagen('main14', this.src)">
+<img src="AZUL7.jpeg" onclick="cambiarImagen('main14', this.src)">
+<img src="AZUL8.jpeg" onclick="cambiarImagen('main14', this.src)">
+</div>
+</div>
+</div>
+
+<div id="auto15" class="modal">
+<div class="modal-content">
+<span class="close" onclick="cerrarModal('auto15')">&times;</span>
+<img id="main15" src="NISSAN.jpeg" alt="Auto 15">
+<h2>MARCA 15 MODELO 15</h2>
+<p>Descripción del Auto 15.</p>
+<div class="galeria">
+<img src="NISSAN2.jpeg" onclick="cambiarImagen('main15', this.src)">
+<img src="NISSAN3.jpeg" onclick="cambiarImagen('main15', this.src)">
+<img src="NISSAN4.jpeg" onclick="cambiarImagen('main15', this.src)">
+<img src="NISSAN5.jpeg" onclick="cambiarImagen('main15', this.src)">
+<img src="NISSAN6.jpeg" onclick="cambiarImagen('main15', this.src)">
+<img src="NISSAN7.jpeg" onclick="cambiarImagen('main15', this.src)">
+<img src="NISSAN8.jpeg" onclick="cambiarImagen('main15', this.src)">
+</div>
+</div>
+</div>
+
+
+
+
+<div id="auto16" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModal('auto16')">&times;</span>
+    <img id="main16" src="BLANCAT.jpeg" alt="Auto 16">
+    <h2>MARCA 16 MODELO 16</h2>
+    <p>Descripción del Auto 16.</p>
+    <div class="galeria">
+      <img src="BLANCAT2.jpeg" onclick="cambiarImagen('main16', this.src)">
+      <img src="BLANCAT3.jpeg" onclick="cambiarImagen('main16', this.src)">
+      <img src="BLANCAT4.jpeg" onclick="cambiarImagen('main16', this.src)">
+      <img src="BLANCAT5.jpeg" onclick="cambiarImagen('main16', this.src)">
+      <img src="BLANCAT6.jpeg" onclick="cambiarImagen('main16', this.src)">
+      <img src="BLANCAT7.jpeg" onclick="cambiarImagen('main16', this.src)">
+    </div>
+  </div>
+</div>
+
+<div id="auto17" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModal('auto17')">&times;</span>
+    <img id="main17" src="TAOS.jpeg" alt="Auto 17">
+    <h2>MARCA 17 MODELO 17</h2>
+    <p>Descripción del Auto 17.</p>
+    <div class="galeria">
+      <img src="TAOS2.jpeg" onclick="cambiarImagen('main17', this.src)">
+      <img src="TAOS3.jpeg" onclick="cambiarImagen('main17', this.src)">
+      <img src="TAOS4.jpeg" onclick="cambiarImagen('main17', this.src)">
+      <img src="TAOS5.jpeg" onclick="cambiarImagen('main17', this.src)">
+      <img src="TAOS6.jpeg" onclick="cambiarImagen('main17', this.src)">
+    </div>
+  </div>
+</div>
+
+<div id="auto18" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModal('auto18')">&times;</span>
+    <img id="main18" src="VIR.jpeg" alt="Auto 18">
+    <h2>MARCA 18 MODELO 18</h2>
+    <p>Descripción del Auto 18.</p>
+    <div class="galeria">
+      <img src="VIR2.jpeg" onclick="cambiarImagen('main18', this.src)">
+      <img src="VIR3.jpeg" onclick="cambiarImagen('main18', this.src)">
+      <img src="VIR4.jpeg" onclick="cambiarImagen('main18', this.src)">
+      <img src="VIR5.jpeg" onclick="cambiarImagen('main18', this.src)">
+      <img src="VIR6.jpeg" onclick="cambiarImagen('main18', this.src)">
+      <img src="VIR7.jpeg" onclick="cambiarImagen('main18', this.src)">
+      <img src="VIR8.jpeg" onclick="cambiarImagen('main18', this.src)">
+      
+    </div>
+  </div>
+</div>
+
+<div id="auto19" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModal('auto19')">&times;</span>
+    <img id="main19" src="SEA.jpeg" alt="Auto 19">
+    <h2>MARCA 19 MODELO 19</h2>
+    <p>Descripción del Auto 19.</p>
+    <div class="galeria">
+      <img src="SEA2.jpeg" onclick="cambiarImagen('main19', this.src)">
+      <img src="SEA3.jpeg" onclick="cambiarImagen('main19', this.src)">
+      <img src="SEA4.jpeg" onclick="cambiarImagen('main19', this.src)">
+      <img src="SEA5.jpeg" onclick="cambiarImagen('main19', this.src)">
+      <img src="SEA6.jpeg" onclick="cambiarImagen('main19', this.src)">
+      <img src="SEA7.jpeg" onclick="cambiarImagen('main19', this.src)">
+    </div>
+  </div>
+</div>
+
+<div id="auto20" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModal('auto20')">&times;</span>
+    <img id="main20" src="AT.jpeg" alt="Auto 20">
+    <h2>MARCA 20 MODELO 20</h2>
+    <p>Descripción del Auto 20.</p>
+    <div class="galeria">
+      <img src="AT2.jpeg" onclick="cambiarImagen('main20', this.src)">
+      <img src="AT3.jpeg" onclick="cambiarImagen('main20', this.src)">
+      <img src="AT4.jpeg" onclick="cambiarImagen('main20', this.src)">
+      <img src="AT5.jpeg" onclick="cambiarImagen('main20', this.src)">
+      <img src="AT6.jpeg" onclick="cambiarImagen('main20', this.src)">
+      <img src="AT7.jpeg" onclick="cambiarImagen('main20', this.src)">
+    </div>
+  </div>
+</div>
+
+<div id="auto21" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModal('auto21')">&times;</span>
+    <img id="main21" src="auto21.jpeg" alt="Auto 21">
+    <h2>MARCA 21 MODELO 21</h2>
+    <p>Descripción del Auto 21.</p>
+    <div class="galeria">
+      <img src="" onclick="cambiarImagen('main21', this.src)">
+      <img src="" onclick="cambiarImagen('main21', this.src)">
+      <img src="" onclick="cambiarImagen('main21', this.src)">
+      <img src="" onclick="cambiarImagen('main21', this.src)">
+      <img src="" onclick="cambiarImagen('main21', this.src)">
+      <img src="" onclick="cambiarImagen('main21', this.src)">
+      <img src="" onclick="cambiarImagen('main21', this.src)">
+      <img src="" onclick="cambiarImagen('main21', this.src)">
+    </div>
+  </div>
+</div>
+
+<div id="auto22" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModal('auto22')">&times;</span>
+    <img id="main22" src="AUTOS/auto22.jpeg" alt="Auto 22">
+    <h2>MARCA 22 MODELO 22</h2>
+    <p>Descripción del Auto 22.</p>
+    <div class="galeria">
+      <img src="" onclick="cambiarImagen('main22', this.src)">
+      <img src="" onclick="cambiarImagen('main22', this.src)">
+      <img src="" onclick="cambiarImagen('main22', this.src)">
+      <img src="" onclick="cambiarImagen('main22', this.src)">
+      <img src="" onclick="cambiarImagen('main22', this.src)">
+      <img src="" onclick="cambiarImagen('main22', this.src)">
+      <img src="" onclick="cambiarImagen('main22', this.src)">
+      <img src="" onclick="cambiarImagen('main22', this.src)">
+    </div>
+  </div>
+</div>
+
+<div id="auto23" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="cerrarModal('auto23')">&times;</span>
+    <img id="main23" src="AUTOS/auto23.jpeg" alt="Auto 23">
+    <h2>MARCA 23 MODELO 23</h2>
+    <p>Descripción del Auto 23.</p>
+    <div class="galeria">
+      <img src="" onclick="cambiarImagen('main23', this.src)">
+      <img src="" onclick="cambiarImagen('main23', this.src)">
+      <img src="" onclick="cambiarImagen('main23', this.src)">
+      <img src="" onclick="cambiarImagen('main23', this.src)">
+      <img src="" onclick="cambiarImagen('main23', this.src)">
+      <img src="" onclick="cambiarImagen('main23', this.src)">
+      <img src="" onclick="cambiarImagen('main23', this.src)">
+      <img src="" onclick="cambiarImagen('main23', this.src)">
+    </div>
+  </div>
+</div>
+
+<script>
+// Función para abrir un modal
+function abrirModal(id) {
+  const modal = document.getElementById(id);
+  if(modal) modal.style.display = "block";
+}
+
+// Función para cerrar un modal
+function cerrarModal(id) {
+  const modal = document.getElementById(id);
+  if(modal) modal.style.display = "none";
+}
+
+// Función para cambiar la imagen principal del modal
+function cambiarImagen(mainId, src) {
+  const mainImg = document.getElementById(mainId);
+  if(mainImg) mainImg.src = src;
+}
+
+// Cerrar modal si se hace clic fuera del contenido
+window.onclick = function(event) {
+  const modales = document.querySelectorAll('.modal');
+  modales.forEach(modal => {
+    if(event.target === modal) {
+      modal.style.display = "none";
+    }
+  });
+}
+</script>
+
